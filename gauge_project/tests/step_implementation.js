@@ -17,11 +17,13 @@ const {
     text,
     into,
     textBox,
-    evaluate
+    evaluate,
+    waitFor
 } = require('taiko');
 const assert = require("assert");
 const { debug } = require('console');
 const { waitForDebugger } = require('inspector');
+const generatePdf = require('../utils/generatePdf');
 const headless = process.env.headless_chrome.toLowerCase() === 'true';
 
 beforeSuite(async () => {
@@ -37,6 +39,11 @@ afterSuite(async () => {
 afterStep(async () => {
     await gauge.screenshot();
 });
+
+afterScenario(async () => {
+    generatePdf();
+    await waitFor(5000);
+})
 
 // Return a screenshot file name
 gauge.customScreenshotWriter = async function () {

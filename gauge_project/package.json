@@ -5,6 +5,8 @@
     "test": "gauge run specs/"
   },
   "dependencies": {
+    "ejs": "^3.1.5",
+    "html-pdf": "^2.2.0",
     "taiko": "latest"
   }
 }
